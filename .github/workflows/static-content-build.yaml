@@ -2,9 +2,10 @@ name: Static Site Build Workflow
 run-name: ${{ github.actor }} is Running Workflow
 on: 
   push:
-    branches: [ main ]
-    paths:
-      - Week-01-Of-CloudOps/src/*
+    branches:
+      - main
+    # paths:
+    #   - Week-01-Of-CloudOps/src/*
 jobs:
   Build:
     runs-on: ubuntu-latest
