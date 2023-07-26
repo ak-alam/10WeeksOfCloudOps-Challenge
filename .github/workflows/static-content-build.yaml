@@ -22,4 +22,4 @@ jobs:
       - name: Test
         run: 
           # ls -al
-          aws s3 cp --recursive ./Week-01-Of-CloudOps/src/*  s3://site.akbaralam.me/
+          aws s3 cp --recursive ./Week-01-Of-CloudOps/src/  s3://site.akbaralam.me/
