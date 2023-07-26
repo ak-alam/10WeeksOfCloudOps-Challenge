@@ -108,6 +108,41 @@ The remaining configuration I'm skipping because I don't have any custom error d
 
 ## CI/CD
 
+I will be using github action as my CI/CD platform. Github Actions consist of several essential components that work together to automate various repitative task in our day to day job. It has serveral components but I will be discuss the ones we need for our pipeline.
+
+1. Workflows: It is a configurable automated process that will run one or more jobs defined in a YAML file and trigger based on an event (push, pull request, etc) or manually (workflow disptach) or at schedule time.
+2. On: Its a switch which is used to trigger the workflow based.
+3. Job: It is a combination of steps which are used to perform some action. 
+4. Steps: It is a single process which is used to run some commands or execute some processes using pre-build or community provided "actions"
 
 
+```bash
+name: Static Site Build Workflow
+run-name: ${{ github.actor }} is Running Workflow
+on: 
+  push:
+    branches:
+      - main
+    # paths:
+    #   - Week-01-Of-CloudOps/src/*
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
+      - name: Set up AWS
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Test
+        run: 
+          # ls -al
+          aws s3 cp --recursive ./Week-01-Of-CloudOps/src/  s3://site.akbaralam.me/
+```
+
+
+Whenever there's change in my main branch a the workflow "Static Site Build Workflow" will trigger and it will copy files from `/Week-01-Of-CloudOps/src/` location to our s3 bucket and all new changes will be automatically reflected on our site. 
