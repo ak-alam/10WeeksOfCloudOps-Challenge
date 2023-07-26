@@ -22,4 +22,4 @@ jobs:
       - name: Test
         run: 
           ls -al
-          aws s3 ls
+          # aws s3 ls
