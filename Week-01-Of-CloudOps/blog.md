@@ -116,7 +116,7 @@ I will be using github action as my CI/CD platform. Github Actions consist of se
 4. Steps: It is a single process which is used to run some commands or execute some processes using pre-build or community provided "actions"
 
 
-```bash
+```yaml
 name: Static Site Build Workflow
 run-name: ${{ github.actor }} is Running Workflow
 on: 
@@ -143,6 +143,3 @@ jobs:
           # ls -al
           aws s3 cp --recursive ./Week-01-Of-CloudOps/src/  s3://site.akbaralam.me/
 ```
-
-
-Whenever there's change in my main branch a the workflow "Static Site Build Workflow" will trigger and it will copy files from `/Week-01-Of-CloudOps/src/` location to our s3 bucket and all new changes will be automatically reflected on our site. 
